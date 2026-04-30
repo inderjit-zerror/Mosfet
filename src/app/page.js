@@ -118,7 +118,7 @@ Secure cloud-native architecture.`,
       <div className="w-full h-svh BlackBG relative overflow-hidden">
         <div className=" absolute top-1/3 -right-[10%] -translate-y-1/2 w-1/2 max-sm:blur-[150px] blur-[280px] rounded-full RedBG h-[50vh]  "></div>
 
-        <div className="w-1/3 max-sm:w-full  h-fit absolute top-[15%] max-sm:top-[20%] -translate-y-1/2 right-0 px-5">
+        <div className="w-1/3 max-sm:w-full  h-fit absolute top-[15%] max-sm:top-[20%] -translate-y-1/2 right-0 px-5 sm:px-10">
           <p className="WhiteText text-justify [text-indent:10vw] text-[1vw] leading-[1vw] max-sm:text-[1rem] max-sm:leading-[1rem] ">
             Mosfet Tech Solutions is a technology company focused on automotive
             safety, visibility, and intelligent vehicle systems. We deliver
@@ -128,22 +128,23 @@ Secure cloud-native architecture.`,
           </p>
         </div>
 
-        <div className=" w-full h-fit absolute bottom-0 left-0 p-5">
+        <div className=" w-full h-fit absolute bottom-0 left-0 p-5 sm:px-10">
           <div className="w-full h-fit ">
             <p className="RedText text-[2vw] leading-[2vw]  max-sm:text-[1rem] max-sm:leading-[1rem] tracking-tighter uppercase">
               We’re <br /> revamping our website....
             </p>
           </div>
 
-          <h1 className="WhiteText font-semibold">
-            {UD.map((letter, index) => (
+          <h1 className="WhiteText font-semibold text-[10vw] leading-[9vw]  max-sm:text-[12vw] max-sm:leading-[12vw] tracking-tighter overflow-hidden">
+            {/* {UD.map((letter, index) => (
               <span
-                className="text-[10vw] leading-[9vw] max-sm:text-[12vw] max-sm:leading-[12vw] tracking-tighter overflow-hidden"
+                className="text-[10vw] leading-[9vw]  max-sm:text-[12vw] max-sm:leading-[12vw] tracking-tighter overflow-hidden"
                 key={index}
               >
                 {letter}
               </span>
-            ))}
+            ))} */}
+            WEBSITE UNDER <br /> MAINTENANCE
           </h1>
         </div>
       </div>
@@ -151,7 +152,7 @@ Secure cloud-native architecture.`,
       {/* Service */}
 
       <div className="w-full h-[300vh] max-sm:h-fit relative ServicesCONT">
-        <div className="w-full h-svh max-sm:h-fit  BlackBG sm:sticky top-0 left-0 pt-[10vh] flex flex-col p-5">
+        <div className="w-full h-svh max-sm:h-fit  BlackBG sm:sticky top-0 left-0 pt-[10vh] flex flex-col p-5 sm:px-10">
           <div className="w-full h-fit flex gap-5 max-sm:flex-col">
             <div className="w-[30vw] h-auto max-sm:h-fit WhiteText  flex flex-col ">
               <p className="text-[1vw] leading-[1vw] max-sm:text-[1rem] max-sm:leading-[1rem] RedText uppercase">
@@ -174,7 +175,7 @@ Secure cloud-native architecture.`,
             </div>
           </div>
 
-          <div className="w-full h-[45vh] max-sm:h-fit mt-auto max-sm:pt-[5vh] max-sm:gap-[2vh] flex max-sm:flex-col overflow-hidden gap-2 ">
+          <div className="w-full h-[45vh] max-sm:h-fit  mt-auto max-sm:pt-[5vh] max-sm:gap-[2vh] flex max-sm:flex-col overflow-hidden gap-2 ">
             {services.map((item, index) => {
               const bgColors = [
                 "bg-red-100",
@@ -217,7 +218,7 @@ Secure cloud-native architecture.`,
 
       {/* CONTACT FORM */}
 
-      <section className="relative BlackBG py-28 px-6">
+      <section className="relative BlackBG py-28 px-6 sm:px-10">
         <div className="w-full h-fit flex gap-5">
           <div className="w-[30vw] max-sm:w-full h-auto WhiteText  flex flex-col ">
             <p className="text-[1vw] leading-[1vw] max-sm:text-[1rem] max-sm:leading-[1rem] RedText uppercase">
@@ -293,18 +294,25 @@ Secure cloud-native architecture.`,
       </section>
 
       {/* Footer */}
-      <footer className="relative border-t  BlackBG border-white/[0.06] pt-16 pb-8 px-5">
+      <footer className="relative border-t  BlackBG border-white/[0.06] pt-16 pb-8 px-5 sm:px-10">
         <div className="w-full mx-auto fkex ">
           {/* Top grid */}
           <div className="flex flex-col w-full justify-between gap-12 mb-16 md:flex-row md:flex-wrap md:items-start">
             {/* Brand */}
             <div className="footer-item w-fit flex-shrink-0">
-              <h3
+              {/* <h3
                 className="text-3xl font-black uppercase WhiteText tracking-widest mb-3"
                 
               >
                 MOSFET
-              </h3>
+              </h3> */}
+              <div className="w-[100px] mb-5">
+                <img
+                  src={`/img/logo.png`}
+                  alt="IMG"
+                  className="w-full object-cover object-center"
+                />
+              </div>
               <p className="text-white text-sm leading-relaxed max-w-xs">
                 Core intelligence for automotive safety, visibility, and
                 connected vehicle systems — delivering OEM‑grade hardware, AI,
@@ -318,31 +326,42 @@ Secure cloud-native architecture.`,
                 Contact
               </h4>
               <ul className="space-y-3 text-sm text-white">
-                <a href="https://www.mosfettech.com"><li className="flex items-start gap-3">
-                  <span className="RedText mt-0.5">🌐</span>
-                  <AnimatedTitle text={'www.mosfettech.com'} />
-                  {/* <span></span> */}
-                </li></a>
-               <a href="tel:9999878104">  <li className="flex items-start gap-3">
-                  <span className="RedText mt-0.5">📞</span>
-                  <AnimatedTitle text={'+91 9999878104'} />
-                  {/* <span></span> */}
-                </li></a>
-              <a href="tel:9910700028">  <li className="flex items-start gap-3">
-                  <span className="RedText mt-0.5">📞</span>
-                  <AnimatedTitle text={'+91 9910700028'} />
-                  {/* <span></span> */}
-                </li></a>
+                <a href="https://www.mosfettech.com">
+                  <li className="flex items-start gap-3">
+                    <span className="RedText mt-0.5">🌐</span>
+                    <AnimatedTitle text={"www.mosfettech.com"} />
+                    {/* <span></span> */}
+                  </li>
+                </a>
+                <a href="tel:9999878104">
+                  {" "}
+                  <li className="flex items-start gap-3">
+                    <span className="RedText mt-0.5">📞</span>
+                    <AnimatedTitle text={"+91 9999878104"} />
+                    {/* <span></span> */}
+                  </li>
+                </a>
+                <a href="tel:9910700028">
+                  {" "}
+                  <li className="flex items-start gap-3">
+                    <span className="RedText mt-0.5">📞</span>
+                    <AnimatedTitle text={"+91 9910700028"} />
+                    {/* <span></span> */}
+                  </li>
+                </a>
                 <li className="flex items-start gap-3">
                   <span className="RedText mt-0.5">📍</span>
                   <span>
-                    <AnimatedTitle text={' B-66, 1st Floor, Naraina Industrial Area, Phase 1,'} />
-                    <AnimatedTitle text={' New Delhi, India'} />
-                   
+                    <AnimatedTitle
+                      text={
+                        " B-66, 1st Floor, Naraina Industrial Area, Phase 1,"
+                      }
+                    />
+                    <AnimatedTitle text={" New Delhi, India"} />
+
                     <br />
-                    
                   </span>
-                </li> 
+                </li>
               </ul>
             </div>
 
@@ -365,8 +384,7 @@ Secure cloud-native architecture.`,
                       border: "1px solid rgba(255,255,255,0.08)",
                     }}
                   >
-                     <AnimatedTitle text={s.label} />
-                    
+                    <AnimatedTitle text={s.label} />
                   </a>
                 ))}
               </div>
@@ -388,8 +406,7 @@ Secure cloud-native architecture.`,
                 target="blank"
                 className="text-white underline underline-offset-2"
               >
-                 <AnimatedTitle text={' Zerror Studios'} />
-               
+                <AnimatedTitle text={" Zerror Studios"} />
               </a>
             </span>
           </div>
