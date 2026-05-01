@@ -683,7 +683,7 @@ const Home = () => {
       {/* ════════════════════════════════════════
             HERO
         ════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex flex-col items-center max-sm:items-start max-sm:pt-[19vh]   bg-gradient-to-b from-[red] to-black justify-center overflow-hidden">
+      <section className="relative min-h-screen flex flex-col items-center max-sm:items-start max-sm:pt-[19vh]   bg-gradient-to-b from-[red] to-[#000000] justify-center overflow-hidden">
         {/* Grain overlay */}
         <div
           className="absolute inset-0 pointer-events-none z-10 opacity-[0.04]"
@@ -736,7 +736,7 @@ const Home = () => {
         </div>
 
         {/* Bottom fade */}
-        <div className="absolute bottom-0 inset-x-0 h-32  bg-gradient-to-t from-[#080808] to-transparent z-20" />
+        <div className="absolute bottom-0 inset-x-0 h-32  bg-gradient-to-t from-[#000000] to-transparent z-20" />
       </section>
 
       {/* Scroll indicator */}
@@ -959,10 +959,10 @@ const Home = () => {
                 Contact
               </h4>
               <ul className="space-y-3 text-sm text-white">
-                <a href="https://www.mosfettech.com">
+                <a href="mailto:Support@mosfettech.com">
                   <li className="flex items-start gap-3">
-                    <span className="RedText mt-0.5">🌐</span>
-                    <AnimatedTitle text={"www.mosfettech.com"} />
+                    <span className="RedText mt-0.5">✉️</span>
+                    <AnimatedTitle text={"Support@mosfettech.com"} />
                     {/* <span></span> */}
                   </li>
                 </a>
