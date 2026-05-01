@@ -81,7 +81,7 @@
 //   };
 
 
-  
+
 
 //   return (
 //     <>
@@ -371,7 +371,7 @@
 //             <div className="footer-item w-fit flex-shrink-0">
 //               {/* <h3
 //                 className="text-3xl font-black uppercase WhiteText tracking-widest mb-3"
-                
+
 //               >
 //                 MOSFET
 //               </h3> */}
@@ -492,13 +492,34 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { toast } from "react-toastify";
 import AnimatedTitle from "@/components/common/AnimatedTitle";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+
 gsap.registerPlugin(ScrollTrigger);
 
-const Home = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
+const contactSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().min(1, "Email is required").email("Enter a valid email"),
+  message: z.string().min(1, "Message is required"),
+});
 
+const Home = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  });
   // Refs for page-load animation targets
   const heroTaglineRef = useRef(null);
   const heroHeadingRef = useRef(null);
@@ -542,12 +563,28 @@ const Home = () => {
     },
   ];
 
-  const handleChange = (e) =>
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const onSubmit = async (data) => {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSent(true);
+      const resData = await res.json();
+
+      if (resData.success) {
+        toast.success("Email received successfully, we'll get back to you soon!");
+        reset();
+      } else {
+        toast.error("Failed to send email, please try again!");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Failed to send email, please try again!");
+    }
   };
 
   // ─── PAGE-LOAD ANIMATION ───────────────────────────────────────────────────
@@ -798,15 +835,15 @@ const Home = () => {
               <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-orange-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="relative z-10 flex h-full flex-col justify-between gap-8">
-                
+
                 <div>
-                   
-                 
+
+
                   <span className="rounded-full border w-fit flex ml-auto border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-white/50">
-                     01
-                    </span>
-                  
-                 
+                    01
+                  </span>
+
+
                   <h3 className="text-2xl md:text-3xl mt-5 max-sm:text-[20px] font-semibold tracking-tight text-white mb-4">
                     {services[0].title}
                   </h3>
@@ -864,65 +901,54 @@ const Home = () => {
         </div>
 
         <div className="contact-inner relative z-10 max-w-2xl mt-20 mx-auto text-center">
-          {sent ? (
-            <div className="py-16 text-center">
-              <p className="text-4xl mb-3">✅</p>
-              <p className="RedText text-lg font-semibold">Message Received!</p>
-              <p className="WhiteText text-sm mt-2">We'll be in touch soon.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4 text-left">
-              {[
-                {
-                  label: "Full Name",
-                  name: "name",
-                  type: "text",
-                  placeholder: "John Doe",
-                },
-                {
-                  label: "Email Address",
-                  name: "email",
-                  type: "email",
-                  placeholder: "john@example.com",
-                },
-              ].map((f) => (
-                <div key={f.name}>
-                  <label className="block text-xs text-white mb-1.5 tracking-widest uppercase">
-                    {f.label}
-                  </label>
-                  <input
-                    required
-                    type={f.type}
-                    name={f.name}
-                    value={form[f.name]}
-                    onChange={handleChange}
-                    placeholder={f.placeholder}
-                    className="w-full bg-white/[0.04] border border-white/70 rounded-xl px-4 py-3.5 text-sm text-white placeholder-white/50 outline-none focus:border-red-500 transition-colors"
-                  />
-                </div>
-              ))}
-              <div>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-left">
+            {[
+              {
+                label: "Full Name",
+                name: "name",
+                type: "text",
+                placeholder: "John Doe",
+              },
+              {
+                label: "Email Address",
+                name: "email",
+                type: "email",
+                placeholder: "john@example.com",
+              },
+            ].map((f) => (
+              <div key={f.name}>
                 <label className="block text-xs text-white mb-1.5 tracking-widest uppercase">
-                  Message
+                  {f.label}
                 </label>
-                <textarea
-                  required
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  rows={5}
-                  placeholder="Tell us about your requirements..."
-                  className="w-full bg-white/[0.04] border border-white/70 rounded-xl px-4 py-3.5 text-sm text-white placeholder-white/50 outline-none focus:border-red-500 transition-colors resize-none"
+                <input
+                  {...register(f.name)}
+                  type={f.type}
+                  placeholder={f.placeholder}
+                  className={`w-full bg-white/[0.04] border ${errors[f.name] ? 'border-red-500' : 'border-white/70'} rounded-xl px-4 py-3.5 text-sm text-white placeholder-white/50 outline-none focus:border-red-500 transition-colors`}
                 />
+                {errors[f.name] && <p className="text-red-500 text-xs mt-1">{errors[f.name].message}</p>}
               </div>
-              <button
-                type="submit"
-                className="w-full py-4 rounded-xl font-bold tracking-widest uppercase text-sm transition-all RedBG WhiteText duration-300 hover:scale-[1.02] active:scale-[0.98]"
-              >
-                Send Message →
-              </button>
-            </form>
-          )}
+            ))}
+            <div>
+              <label className="block text-xs text-white mb-1.5 tracking-widest uppercase">
+                Message
+              </label>
+              <textarea
+                {...register("message")}
+                rows={5}
+                placeholder="Tell us about your requirements..."
+                className={`w-full bg-white/[0.04] border ${errors.message ? 'border-red-500' : 'border-white/70'} rounded-xl px-4 py-3.5 text-sm text-white placeholder-white/50 outline-none focus:border-red-500 transition-colors resize-none`}
+              />
+              {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
+            </div>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full py-4 rounded-xl font-bold tracking-widest uppercase text-sm transition-all RedBG WhiteText duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
+            >
+              {isSubmitting ? "Sending..." : "Send Message →"}
+            </button>
+          </form>
         </div>
       </section>
 
@@ -1014,7 +1040,7 @@ const Home = () => {
                     className="w-fit px-5 h-10 rounded-lg flex items-center border border-white justify-center text-xs font-bold text-white hover:RedText transition-all duration-200 hover:scale-110"
                     style={{
                       background: "rgba(255,255,255,0.04)",
-                      
+
                     }}
                   >
                     <AnimatedTitle text={s.label} />
