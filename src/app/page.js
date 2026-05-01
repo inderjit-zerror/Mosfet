@@ -683,7 +683,7 @@ const Home = () => {
       {/* ════════════════════════════════════════
             HERO
         ════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex flex-col items-center bg-gradient-to-b from-[red] to-black justify-center overflow-hidden">
+      <section className="relative min-h-screen flex flex-col items-center max-sm:items-start max-sm:pt-[19vh]   bg-gradient-to-b from-[red] to-black justify-center overflow-hidden">
         {/* Grain overlay */}
         <div
           className="absolute inset-0 pointer-events-none z-10 opacity-[0.04]"
@@ -694,7 +694,7 @@ const Home = () => {
           }}
         />
 
-        <div className="relative z-20 flex flex-col items-center text-center px-6">
+        <div className="relative z-20  flex flex-col  max-sm:mb-auto items-center text-center px-6">
           {/* ← ref attached for load animation */}
           <p
             ref={heroTaglineRef}
@@ -736,13 +736,13 @@ const Home = () => {
         </div>
 
         {/* Bottom fade */}
-        <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#080808] to-transparent z-20" />
+        <div className="absolute bottom-0 inset-x-0 h-32  bg-gradient-to-t from-[#080808] to-transparent z-20" />
       </section>
 
       {/* Scroll indicator */}
       <div
         ref={scrollIndicatorRef}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2"
+        className="absolute bottom-8 left-1/2  -translate-x-1/2 z-30 flex flex-col items-center gap-2"
         style={{ opacity: 0 }}
       >
         <span className="text-[11px] uppercase tracking-[0.35em] text-white">
@@ -769,7 +769,7 @@ const Home = () => {
         ════════════════════════════════════════ */}
       <section
         id="services"
-        className="relative py-28 px-6 md:px-[10vw] w-full BlackBG mx-auto"
+        className="relative py-28 max-sm:pt-5 px-6 md:px-[10vw] w-full BlackBG mx-auto"
       >
         {/* Section header */}
         <div className="section-title mb-20 text-center">
@@ -851,7 +851,7 @@ const Home = () => {
       </section>
 
       {/* CONTACT FORM */}
-      <section className="relative BlackBG py-28 px-6 sm:px-10">
+      <section className="relative BlackBG py-28 max-sm:pt-5  px-6 sm:px-10">
         <div className="w-fit h-fit mx-auto flex gap-5">
           <div className="w-fit max-sm:w-full h-auto WhiteText flex flex-col justify-center items-center">
             {/* <p className="text-[1vw] leading-[1vw] max-sm:text-[1rem] max-sm:leading-[1rem] RedText uppercase">
@@ -911,7 +911,7 @@ const Home = () => {
                   value={form.message}
                   onChange={handleChange}
                   rows={5}
-                  placeholder="Tell us about your project..."
+                  placeholder="Tell us about your requirements..."
                   className="w-full bg-white/[0.04] border border-white/70 rounded-xl px-4 py-3.5 text-sm text-white placeholder-white/50 outline-none focus:border-red-500 transition-colors resize-none"
                 />
               </div>
@@ -1011,7 +1011,7 @@ const Home = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="w-fit px-5 h-10 rounded-lg flex items-center border border-[red]/70 justify-center text-xs font-bold text-white hover:RedText transition-all duration-200 hover:scale-110"
+                    className="w-fit px-5 h-10 rounded-lg flex items-center border border-white justify-center text-xs font-bold text-white hover:RedText transition-all duration-200 hover:scale-110"
                     style={{
                       background: "rgba(255,255,255,0.04)",
                       
