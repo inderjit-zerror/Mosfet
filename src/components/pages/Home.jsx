@@ -501,23 +501,31 @@ const Home = () => {
                 <a href="mailto:Support@mosfettech.com">
                   <li className="flex items-start gap-3">
                     <span className="RedText mt-0.5">✉️</span>
-                    <AnimatedTitle text={"Support@mosfettech.com"} />
+                    <AnimatedTitle text={"support@mosfettech.com"} />
                     {/* <span></span> */}
                   </li>
                 </a>
-                <a href="tel:9999878104">
+                <a href="tel:9667227027">
                   {" "}
                   <li className="flex items-start gap-3">
                     <span className="RedText mt-0.5">📞</span>
-                    <AnimatedTitle text={"+91 9999878104"} />
+                    <AnimatedTitle text={"+91 9667227027"} />
                     {/* <span></span> */}
                   </li>
                 </a>
-                <a href="tel:9910700028">
+                <a href="tel:8130863876">
                   {" "}
                   <li className="flex items-start gap-3">
                     <span className="RedText mt-0.5">📞</span>
-                    <AnimatedTitle text={"+91 9910700028"} />
+                    <AnimatedTitle text={"+91 8130863876"} />
+                    {/* <span></span> */}
+                  </li>
+                </a>
+                <a href="tel:9999458588">
+                  {" "}
+                  <li className="flex items-start gap-3">
+                    <span className="RedText mt-0.5">📞</span>
+                    <AnimatedTitle text={"+91 9999458588"} />
                     {/* <span></span> */}
                   </li>
                 </a>
